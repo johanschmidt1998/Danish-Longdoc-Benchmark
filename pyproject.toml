@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "danlonben"
+version = "0.0.1"
+description = "A benchmark for evaluating how large language models retrieve and reason over long Danish documents containing both unstructured text and structured data such as tables.\u201d"
+authors = [
+  { name = "Johan Hausted Schmidt" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = "~=3.11.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["danlonben"]
+include = ["pyproject.toml", "danlonben/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["danlonben"]
+force-sort-within-sections = true
+
