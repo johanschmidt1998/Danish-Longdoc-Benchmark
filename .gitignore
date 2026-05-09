@@ -1,6 +1,12 @@
 # Data
 /data/
 
+# Claude Code local config
+.claude/
+
+# Stray files
+nul
+
 # Mac OS-specific storage files
 .DS_Store
 

@@ -16,7 +16,15 @@ dependencies:
   - scikit-learn
   - ruff
   - pytest
+  - poppler          # required by pdf2image for PDF rendering
   - pip:
     - python-dotenv
     - mkdocs
+    - pymupdf          # fitz — PDF text extraction
+    - pdf2image        # PDF → PNG rendering (needs poppler)
+    - langgraph        # agent pipeline orchestration
+    - langchain-together  # Together AI LLM integration
+    - together         # Together AI SDK
+    - anthropic        # Anthropic API client
+    - openai           # OpenAI API client
     - -e .
