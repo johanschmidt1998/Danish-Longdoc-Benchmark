@@ -24,7 +24,6 @@ DEFAULT_RUN_CONFIG: RunConfig = {
     "mock_mode": False,
     "model_name": DEFAULT_MODEL_NAME,
     "temperature": 0.2,
-    "max_tokens": 1200,
     "max_pages": None,
     "verification_mode": "heuristic",
     "output_filename": "questions.jsonl",
@@ -89,7 +88,6 @@ def run(
         help="Together model for generation/rewrite/critique.",
     ),
     temperature: float = typer.Option(0.2, min=0.0, max=1.0),
-    max_tokens: int = typer.Option(1200, min=128),
     max_pages: int | None = typer.Option(None, min=1, help="Limit processing to first N pages."),
     output_filename: str = typer.Option("questions.jsonl"),
 ) -> None:
@@ -104,7 +102,6 @@ def run(
         "verification_mode": verification_mode,  # type: ignore[typeddict-item]
         "model_name": model_name,
         "temperature": temperature,
-        "max_tokens": max_tokens,
         "max_pages": max_pages,
         "output_filename": output_filename,
     }

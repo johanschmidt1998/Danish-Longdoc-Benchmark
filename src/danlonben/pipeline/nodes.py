@@ -31,7 +31,7 @@ from danlonben.pipeline.state import (
     RunConfig,
 )
 
-DEFAULT_MODEL_NAME = "gpt-4o-mini"
+DEFAULT_MODEL_NAME = "gpt-4o"
 _TOKEN_PATTERN = re.compile(r"[a-zA-Z0-9æøåÆØÅ]{3,}")
 _DANISH_STOPWORDS = {
     "der",
@@ -127,7 +127,6 @@ def _build_llm(run_config: RunConfig) -> Any:
     return ChatOpenAI(
         model=run_config.get("model_name", DEFAULT_MODEL_NAME),
         temperature=float(run_config.get("temperature", 0.2)),
-        max_tokens=int(run_config.get("max_tokens", 1200)),
         timeout=httpx.Timeout(30.0),
         max_retries=0,
     )
@@ -224,7 +223,7 @@ Returnér KUN gyldig JSON i formatet:
 }}
 
 Sideindhold:
-{_shorten(page["text"], max_chars=2200)}
+{_normalize_whitespace(page["text"])}
 """
     response = _invoke_with_timeout(llm, prompt)
     parsed = _parse_json_from_llm(_extract_text_content(response))
@@ -415,7 +414,7 @@ Svar:
 {candidate["answer_da"]}
 
 Kildeuddrag:
-{_shorten(source_page_text, max_chars=1400)}
+{_normalize_whitespace(source_page_text)}
 """
     response = _invoke_with_timeout(llm, prompt)
     parsed = _parse_json_from_llm(_extract_text_content(response))
