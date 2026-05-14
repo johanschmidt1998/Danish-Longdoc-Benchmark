@@ -55,33 +55,33 @@ MAX_PAGE_CHARS = 6000  # ~1 500 tokens per page — consistent with false_negati
 # ---------------------------------------------------------------------------
 
 _SYSTEM = (
-    "You are a strict relevance judge for an information retrieval benchmark. "
-    "Decide whether a document page genuinely answers a given question. "
-    "Reply with exactly one line: KEEP — <reason>  or  REMOVE — <reason>."
+    "Du er en streng relevansdommer for et informationssøgnings-benchmark. "
+    "Afgør om en dokumentside reelt besvarer et givet spørgsmål. "
+    "Svar med præcis én linje: KEEP — <begrundelse> eller REMOVE — <begrundelse>."
 )
 
 _TEMPLATE = """\
-Decide whether the page below contains sufficient information to answer the \
-question by itself.
+Afgør om siden nedenfor indeholder tilstrækkelig information til at besvare \
+spørgsmålet alene.
 
-Rules:
-- Reply KEEP only if the page contains the specific fact, figure, or statement \
-that directly and completely answers the question. The expected answer must be \
-clearly present or directly derivable from this page alone.
-- Reply REMOVE if the page merely discusses a related topic, contains similar \
-but not identical information, or only partially addresses the question.
-- Reply REMOVE if any inference, combination with other pages, or background \
-knowledge is needed to arrive at the answer.
-- When in doubt, reply REMOVE.
+Regler:
+- Svar KEEP kun hvis siden indeholder den specifikke kendsgerning, det tal eller \
+den udtalelse, der direkte og fuldstændigt besvarer spørgsmålet. Det forventede \
+svar skal være tydeligt tilstede eller direkte afledt af denne side alene.
+- Svar REMOVE hvis siden blot diskuterer et relateret emne, indeholder lignende \
+men ikke identisk information, eller kun delvist adresserer spørgsmålet.
+- Svar REMOVE hvis der kræves slutninger, kombination med andre sider eller \
+baggrundsviden for at nå frem til svaret.
+- Svar REMOVE i tvivlstilfælde.
 
-Question: {question}
-Expected answer: {answer}
+Spørgsmål: {question}
+Forventet svar: {answer}
 
---- PAGE CONTENT BEGIN ---
+--- SIDEINDHOLD BEGYNDER ---
 {page_text}
---- PAGE CONTENT END ---
+--- SIDEINDHOLD SLUTTER ---
 
-Reply with exactly one line: KEEP — <reason>  or  REMOVE — <reason>."""
+Svar med præcis én linje: KEEP — <begrundelse> eller REMOVE — <begrundelse>."""
 
 # ---------------------------------------------------------------------------
 # Single judge call

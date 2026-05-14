@@ -34,33 +34,33 @@ from danlonben.config import DOCUMENTS, INTERIM_DATA_DIR, PROCESSED_DATA_DIR
 # ---------------------------------------------------------------------------
 
 _SYSTEM = (
-    "You are a strict relevance judge for an information retrieval benchmark. "
-    "Reply with only the single word Yes or No."
+    "Du er en streng relevansdommer for et informationssøgnings-benchmark. "
+    "Svar kun med det enkelte ord Yes eller No."
 )
 
 _TEMPLATE = """\
-Your task: decide whether the page below contains sufficient information to \
-answer the question by itself.
+Din opgave: afgør om siden nedenfor indeholder tilstrækkelig information til at \
+besvare spørgsmålet alene.
 
-Be very strict:
-- Answer Yes ONLY if the page contains the specific fact, figure, or statement \
-that directly and completely answers the question. The expected answer must be \
-clearly present or directly derivable from this page alone.
-- Answer No if the page merely discusses a related topic, contains similar but \
-not identical information, or only partially addresses the question.
-- Answer No if the page requires any inference, combination with other pages, \
-or background knowledge to arrive at the answer.
-- When in doubt, answer No.
+Vær meget streng:
+- Svar Yes KUN hvis siden indeholder den specifikke kendsgerning, det tal eller \
+den udtalelse, der direkte og fuldstændigt besvarer spørgsmålet. Det forventede \
+svar skal være tydeligt tilstede eller direkte afledt af denne side alene.
+- Svar No hvis siden blot diskuterer et relateret emne, indeholder lignende men \
+ikke identisk information, eller kun delvist adresserer spørgsmålet.
+- Svar No hvis der kræves slutninger, kombination med andre sider eller \
+baggrundsviden for at nå frem til svaret.
+- Svar No i tvivlstilfælde.
 
-Question: {question}
-Expected answer: {answer}
+Spørgsmål: {question}
+Forventet svar: {answer}
 
---- PAGE CONTENT BEGIN ---
+--- SIDEINDHOLD BEGYNDER ---
 {page_text}
---- PAGE CONTENT END ---
+--- SIDEINDHOLD SLUTTER ---
 
-Does this page alone contain sufficient information to answer the question? \
-Reply with only Yes or No."""
+Indeholder denne side alene tilstrækkelig information til at besvare spørgsmålet? \
+Svar kun Yes eller No."""
 
 _MAX_PAGE_CHARS = 6000  # roughly 1500 tokens — keeps cost low per call
 
